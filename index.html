@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earthquake Alert Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Earthquake Real-Time Alert System</h1>
+      <p class="subtitle">Track recent earthquakes. Powered by live data, designed for global preparedness.</p>
+    </header>
+
+    <section class="world-map">
+      <span class="map-label">[ API ]</span>
+      <div id="map-magnitude" class="map-magnitude">6.7M</div>
+    </section>
+
+    <section>
+      <h2>Recent Earthquakes (Live Feed)</h2>
+      <h2 class="MAG">Mag</h2>
+      <div id="feed"></div>
+    </section>
+  </main>
+
+  <!-- Popup Alert -->
+  <div id="alert-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="alert-close">&times;</span>
+      <div class="modal-header">
+        <span class="modal-icon">🚨</span>
+        <h2>Earthquake Alert</h2>
+      </div>
+      <div class="modal-main">
+        <div><b id="alert-location"></b></div>
+        <div>Magnitude: <span id="alert-magnitude"></span></div>
+        <div>Time: <span id="alert-time"></span></div>
+        <div class="alert-instructions">Check location, stay safe, follow precautions.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> Earthquake Alert — Open Data &bull; Designed with <span class="heart">♥</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
