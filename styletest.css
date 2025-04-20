@@ -1,0 +1,507 @@
+/* Enhanced Root Variables */
+:root {
+    --primary: #d7263d; /* Red - emergency color */
+    --primary-dark: #a31621;
+    --secondary: #808000; /* Olive green */
+    --secondary-light: #bfcf7c;
+    --secondary-dark: #556b2f;
+    --background: #ffffff;
+    --text-color: #333;
+    --input-bg: #f9f9f9;
+    --input-border: #e0e0e0;
+    --input-focus: #d7263d;
+    --error-color: #ff3860;
+    --success-color: #48c78e;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+  }
+  
+  /* General Styling */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Seismic Wave Background Animation */
+  .earthquake-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .seismic-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    opacity: 0.3;
+    background-repeat: repeat-x;
+  }
+  
+  .wave1 {
+    bottom: -50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23d7263d'%3E%3C/path%3E%3C/svg%3E");
+    animation: wave-animation 45s linear infinite;
+  }
+  
+  .wave2 {
+    bottom: -30px;
+    opacity: 0.15;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23808000'%3E%3C/path%3E%3C/svg%3E");
+    animation: wave-animation 30s linear infinite reverse;
+  }
+  
+  .wave3 {
+    bottom: -10px;
+    opacity: 0.1;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V6c0,21.6,291,111.46,741,110.26,445.39,3.6,459-88.3,459-110.26V0Z' fill='%23556b2f'%3E%3C/path%3E%3C/svg%3E");
+    animation: wave-animation 15s linear infinite;
+  }
+  
+  @keyframes wave-animation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  /* Enhanced Login Container */
+  .login-container {
+    max-width: 400px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 10;
+    border-top: 5px solid var(--primary);
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Logo Styling */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 20px rgba(215, 38, 61, 0.3);
+  }
+  
+  .logo .ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    opacity: 0;
+    animation: ripple 2s linear infinite;
+  }
+  
+  @keyframes ripple {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  
+  /* Typography Enhancements */
+  h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  
+  .subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  /* Form Styling */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-container i {
+    position: absolute;
+    left: 12px;
+    color: #aaa;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(215, 38, 61, 0.15);
+  }
+  
+  input:focus + i {
+    color: var(--primary);
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .toggle-password:hover {
+    color: var(--primary);
+  }
+  
+  /* Remember Me Checkbox */
+  .remember-me {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: relative;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    margin-right: 8px;
+    border-radius: 3px;
+  }
+  
+  .checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary);
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button Styling */
+  button[type="submit"] {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(215, 38, 61, 0.2);
+  }
+  
+  button[type="submit"]:active {
+    transform: translateY(0);
+  }
+  
+  button[type="submit"] i {
+    transition: transform 0.3s ease;
+  }
+  
+  button[type="submit"]:hover i {
+    transform: translateX(4px);
+  }
+  
+  /* Error Message */
+  .error-message {
+    display: none;
+    background-color: rgba(255, 56, 96, 0.1);
+    color: var(--error-color);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+  
+  /* Authentication Toggle */
+  .auth-toggle {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+  .auth-toggle button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .auth-toggle button:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+  
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 60px);
+    height: 1px;
+    background-color: #e0e0e0;
+  }
+  
+  .divider::before {
+    left: 0;
+  }
+  
+  .divider::after {
+    right: 0;
+  }
+  
+  .divider span {
+    background-color: white;
+    padding: 0 10px;
+    font-size: 0.85rem;
+    color: #888;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Social Login */
+  .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 0.5rem;
+  }
+  
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .social-btn.google:hover { color: #DB4437; border-color: #DB4437; }
+  .social-btn.facebook:hover { color: #4267B2; border-color: #4267B2; }
+  .social-btn.twitter:hover { color: #1DA1F2; border-color: #1DA1F2; }
+  
+  /* Loading Overlay */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+  
+  .loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(215, 38, 61, 0.2);
+    border-left-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .loading-overlay p {
+    margin-top: 1rem;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 450px) {
+    .login-container {
+      padding: 2rem 1.5rem;
+    }
+    
+    .logo {
+      width: 70px;
+      height: 70px;
+      font-size: 2rem;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    .remember-me {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  
+  /* Seismic Shake Animation */
+  @keyframes seismic-shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-4px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(4px);
+    }
+  }
+  
+  .shake {
+    animation: seismic-shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+  }

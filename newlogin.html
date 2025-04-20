@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Login - Earthquake Alert System</title>
+    <link rel="stylesheet" href="styletest.css" />
+    <!-- Add these lines for icons and fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+    <!-- Add this background element -->
+    <div class="earthquake-bg">
+        <div class="seismic-wave wave1"></div>
+        <div class="seismic-wave wave2"></div>
+        <div class="seismic-wave wave3"></div>
+    </div>
+
+    <div class="login-container">
+        <!-- Add this logo element -->
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <div class="ripple"></div>
+            </div>
+        </div>
+
+        <h1>Earthquake Alert System</h1>
+        <p class="subtitle">Please log in or register</p>
+
+        <form class="login-form" id="authForm">
+            <div id="errorMessage" class="error-message"></div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <!-- Add icon to input -->
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" required minlength="3" placeholder="Enter your username" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <!-- Add icon and toggle visibility button -->
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" required minlength="6" placeholder="Enter your password" />
+                    <button type="button" id="togglePassword" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add remember me checkbox -->
+            <div class="remember-me">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="rememberMe">
+                    <span class="checkmark"></span>
+                    Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" id="authButton">
+                <span id="btnText">Log In</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <div class="auth-toggle">
+            <button type="button" id="toggleAuth">Need to register?</button>
+        </div>
+
+    </div>
+
+    <!-- Add loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Please wait...</p>
+    </div>
+
+    <script>
+        let isLoginMode = true;
+        
+        // Check if user is already logged in
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'index.html';
+        }
+        
+        // Toggle between login and register
+        document.getElementById('toggleAuth').addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            const btnText = document.getElementById('btnText');
+            const toggleButton = document.getElementById('toggleAuth');
+            
+            btnText.textContent = isLoginMode ? 'Log In' : 'Register';
+            toggleButton.textContent = isLoginMode ? 'Need to register?' : 'Already have an account?';
+        });
+        
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Handle form submission
+        document.getElementById('authForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Show loading overlay
+            document.getElementById('loadingOverlay').classList.add('active');
+            
+            // Simulate network delay
+            setTimeout(() => {
+                if (handleAuth(username, password)) {
+                    // If remember me is checked, store the username
+                    if (document.getElementById('rememberMe').checked) {
+                        localStorage.setItem('rememberedUser', username);
+                    } else {
+                        localStorage.removeItem('rememberedUser');
+                    }
+                    
+                    // Store current user and redirect
+                    localStorage.setItem('currentUser', username);
+                    window.location.href = 'index.html';
+                } else {
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                }
+            }, 1500);
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            
+            // Add shake animation
+            document.querySelector('.login-container').classList.add('shake');
+            setTimeout(() => {
+                document.querySelector('.login-container').classList.remove('shake');
+            }, 500);
+        }
+        
+        function handleAuth(username, password) {
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            
+            if (isLoginMode) {
+                if (users[username] && users[username].password === password) {
+                    localStorage.setItem('currentUser', username);
+                    return true;
+                }
+                showError('Invalid username or password');
+            } else {
+                if (!users[username]) {
+                    users[username] = { password };
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', username);
+                    return true;
+                }
+                showError('Username already exists');
+            }
+            return false;
+        }
+        
+        // Check for remembered user
+        window.addEventListener('load', () => {
+            const rememberedUser = localStorage.getItem('rememberedUser');
+            if (rememberedUser) {
+                document.getElementById('username').value = rememberedUser;
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
